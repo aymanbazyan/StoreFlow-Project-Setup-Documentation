@@ -2,6 +2,6 @@ This is a next.js e-store that is easily editable and can be used for many diffe
 
 [Pc store example demo](https://spring-hardware-nextjs.vercel.app/)
 
-[How to setup your store]([https://spring-hardware-nextjs.vercel.app/](https://aymanbazyan.github.io/StoreFlow-Project-Setup-Documentation/))
+[How to setup your store](https://aymanbazyan.github.io/StoreFlow-Project-Setup-Documentation/)
 
-Source code isn't available right now...
+Source code isn't available right now... The store isn't 100% complete.
