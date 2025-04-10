@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StoreFlow - Setup Documentation</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body class="bg-gray-50 text-gray-800">
+  <header class="bg-gradient-to-r from-blue-500 to-indigo-600 text-white shadow-md">
+    <div class="container mx-auto px-4 py-6">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center space-x-3">
+          <i class="fas fa-bolt text-2xl"></i>
+          <h1 class="text-2xl font-bold">StoreFlow</h1>
+        </div>
+        <div>
+          <a href="https://spring-hardware-nextjs.vercel.app/" target="_blank" class="bg-white text-blue-600 hover:bg-blue-50 px-4 py-2 rounded-md font-medium transition duration-200 flex items-center space-x-2">
+            <i class="fas fa-external-link-alt"></i>
+            <span>Live Demo Example</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container mx-auto px-4 py-8 max-w-4xl">
+    <div class="bg-white rounded-lg shadow-lg p-8 mb-8">
+      <h1 class="text-3xl font-bold mb-6 text-indigo-700 border-b pb-3">Project Setup Documentation</h1>
+      
+      <section class="mb-8">
+        <h2 class="text-2xl font-semibold mb-4 text-indigo-600 flex items-center">
+          <i class="fas fa-link mr-2"></i> Demo Example
+        </h2>
+        <div class="bg-gray-50 p-4 rounded-md">
+          <a href="https://spring-hardware-nextjs.vercel.app/" target="_blank" class="text-blue-600 hover:text-blue-800 hover:underline flex items-center">
+            <i class="fas fa-external-link-alt mr-2"></i>
+            <span>https://spring-hardware-nextjs.vercel.app/</span>
+          </a>
+        </div>
+      </section>
+
+      <section class="mb-8">
+        <h2 class="text-2xl font-semibold mb-4 text-indigo-600 flex items-center">
+          <i class="fas fa-rocket mr-2"></i> Setup
+        </h2>
+        
+        <div class="space-y-6">
+          <div class="bg-gray-50 p-6 rounded-md border-l-4 border-indigo-500">
+            <h3 class="text-lg font-semibold mb-3 flex items-center">
+              <i class="fas fa-database mr-2 text-indigo-500"></i>
+              1. Make a new Supabase project
+            </h3>
+            <p class="text-gray-600">Create a new project in your Supabase dashboard to get started.</p>
+          </div>
+          
+          <div class="bg-gray-50 p-6 rounded-md border-l-4 border-indigo-500">
+            <h3 class="text-lg font-semibold mb-3 flex items-center">
+              <i class="fas fa-cog mr-2 text-indigo-500"></i>
+              2. Environment
+            </h3>
+            <p class="text-gray-600 mb-3">Create a <code class="bg-gray-200 px-2 py-1 rounded">.env.local</code> file and add the following values:</p>
+            <div class="bg-gray-700 text-gray-100 p-4 rounded-md font-mono text-sm">
+              <div class="mb-1">SUPABASE_URL=EXAMPLE</div>
+              <div>SUPABASE_KEY=EXAMPLE</div>
+            </div>
+          </div>
+          
+          <div class="bg-gray-50 p-6 rounded-md border-l-4 border-indigo-500">
+            <h3 class="text-lg font-semibold mb-3 flex items-center">
+              <i class="fas fa-table mr-2 text-indigo-500"></i>
+              3. Create new tables
+            </h3>
+            
+            <div class="mb-4">
+              <p class="font-medium text-indigo-600 mb-2">Categories:</p>
+              <div class="bg-gray-700 text-gray-100 p-4 rounded-md font-mono text-sm overflow-x-auto">
+                create table public."Categories" (<br>
+                &nbsp; slug text not null,<br>
+                &nbsp; name text not null,<br>
+                &nbsp; img text null,<br>
+                &nbsp; created_at timestamp with time zone not null default now(),<br>
+                &nbsp; constraint Categories_pkey primary key (slug)<br>
+                ) TABLESPACE pg_default;
+              </div>
+            </div>
+            
+            <div>
+              <p class="font-medium text-indigo-600 mb-2">Products:</p>
+              <div class="bg-gray-700 text-gray-100 p-4 rounded-md font-mono text-sm overflow-x-auto">
+                create table public."Products" (<br>
+                &nbsp; slug text not null,<br>
+                &nbsp; name text not null,<br>
+                &nbsp; price real not null,<br>
+                &nbsp; img text null,<br>
+                &nbsp; category text not null,<br>
+                &nbsp; description text not null,<br>
+                &nbsp; discount smallint not null default '0'::smallint,<br>
+                &nbsp; quantity smallint not null default '0'::smallint,<br>
+                &nbsp; quality real not null,<br>
+                &nbsp; created_at timestamp with time zone not null default now(),<br>
+                &nbsp; featured_promotion boolean not null default false,<br>
+                &nbsp; constraint Products_pkey primary key (slug),<br>
+                &nbsp; constraint Products_category_fkey foreign KEY (category) references "Categories" (slug),<br>
+                &nbsp; constraint Products_discount_check check ((discount <= 100)),<br>
+                &nbsp; constraint Products_quality_check check (<br>
+                &nbsp; &nbsp; (<br>
+                &nbsp; &nbsp; &nbsp; (quality >= (0)::double precision)<br>
+                &nbsp; &nbsp; &nbsp; and (quality <= (5)::double precision)<br>
+                &nbsp; &nbsp; )<br>
+                &nbsp; )<br>
+                ) TABLESPACE pg_default;
+              </div>
+            </div>
+          </div>
+          
+          <div class="bg-gray-50 p-6 rounded-md border-l-4 border-indigo-500">
+            <h3 class="text-lg font-semibold mb-3 flex items-center">
+              <i class="fas fa-folder mr-2 text-indigo-500"></i>
+              4. Create new storage buckets
+            </h3>
+            <p class="text-gray-600 mb-3">Create these storage buckets (all public):</p>
+            <ul class="list-disc list-inside text-gray-700 space-y-1">
+              <li>categories-images</li>
+              <li>products-images</li>
+              <li>logos (optional)</li>
+            </ul>
+          </div>
+          
+          <div class="bg-gray-50 p-6 rounded-md border-l-4 border-indigo-500">
+            <h3 class="text-lg font-semibold mb-3 flex items-center">
+              <i class="fas fa-user-shield mr-2 text-indigo-500"></i>
+              5. Create Admin account
+            </h3>
+            <p class="text-gray-600">Go to Supabase authentication and create a new account manually (email & pass). Turn off the option "Allow new users to sign up", and you can get the uuid from the users table.</p>
+          </div>
+          
+          <div class="bg-gray-50 p-6 rounded-md border-l-4 border-indigo-500">
+            <h3 class="text-lg font-semibold mb-3 flex items-center">
+              <i class="fas fa-shield-alt mr-2 text-indigo-500"></i>
+              6. SQL Policies
+            </h3>
+            <p class="text-gray-600">Go to <code class="bg-gray-200 px-2 py-1 rounded">./setup-files/create-sql-polices.js</code> and write the table name and admin uuid, then generate (using <code class="bg-gray-200 px-2 py-1 rounded">node create-sql-polices.js</code>) the SQL Policies code file for each Table and Bucket in Supabase (you need to paste the results in Supabase).</p>
+          </div>
+          
+          <div class="bg-gray-50 p-6 rounded-md border-l-4 border-indigo-500">
+            <h3 class="text-lg font-semibold mb-3 flex items-center">
+              <i class="fas fa-cogs mr-2 text-indigo-500"></i>
+              7. Constants
+            </h3>
+            <p class="text-gray-600">Go to <code class="bg-gray-200 px-2 py-1 rounded">./src/helpers/config.js</code> and edit whatever you need there.</p>
+          </div>
+          
+          <div class="bg-gray-50 p-6 rounded-md border-l-4 border-indigo-500">
+            <h3 class="text-lg font-semibold mb-3 flex items-center">
+              <i class="fas fa-image mr-2 text-indigo-500"></i>
+              8. Logo
+            </h3>
+            <p class="text-gray-600">Go to <code class="bg-gray-200 px-2 py-1 rounded">./public/</code> and change the icon.png.</p>
+          </div>
+        </div>
+      </section>
+	  
+	   <p class="text-red-600">Source code is unavailable right now.</p>
+    </div>
+    
+    <footer class="text-center text-gray-500 text-sm mt-8 pb-8">
+      <p>StoreFlow Project Setup Documentation</p>
+    </footer>
+  </main>
+
+  <div class="fixed bottom-4 right-4">
+    <a href="#" class="bg-indigo-600 text-white p-3 rounded-full shadow-lg hover:bg-indigo-700 transition duration-200">
+      <i class="fas fa-arrow-up"></i>
+    </a>
+  </div>
+</body>
+</html>
