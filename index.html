@@ -88,30 +88,7 @@
             
             <div>
               <p class="font-medium text-indigo-600 mb-2">Products:</p>
-              <div class="bg-gray-700 text-gray-100 p-4 rounded-md font-mono text-sm overflow-x-auto">
-                create table public."Products" (<br>
-                &nbsp; slug text not null,<br>
-                &nbsp; name text not null,<br>
-                &nbsp; price real not null,<br>
-                &nbsp; img text null,<br>
-                &nbsp; category text not null,<br>
-                &nbsp; description text not null,<br>
-                &nbsp; discount smallint not null default '0'::smallint,<br>
-                &nbsp; quantity smallint not null default '0'::smallint,<br>
-                &nbsp; quality real not null,<br>
-                &nbsp; created_at timestamp with time zone not null default now(),<br>
-                &nbsp; featured_promotion boolean not null default false,<br>
-                &nbsp; constraint Products_pkey primary key (slug),<br>
-                &nbsp; constraint Products_category_fkey foreign KEY (category) references "Categories" (slug),<br>
-                &nbsp; constraint Products_discount_check check ((discount <= 100)),<br>
-                &nbsp; constraint Products_quality_check check (<br>
-                &nbsp; &nbsp; (<br>
-                &nbsp; &nbsp; &nbsp; (quality >= (0)::double precision)<br>
-                &nbsp; &nbsp; &nbsp; and (quality <= (5)::double precision)<br>
-                &nbsp; &nbsp; )<br>
-                &nbsp; )<br>
-                ) TABLESPACE pg_default;
-              </div>
+             <div class="bg-gray-700 text-gray-100 p-4 rounded-md font-mono text-sm overflow-x-auto"> create table public."Products" (<br> &nbsp; slug text not null,<br> &nbsp; name text not null,<br> &nbsp; price real not null,<br> &nbsp; img text null,<br> &nbsp; category text not null,<br> &nbsp; description text not null,<br> &nbsp; discount smallint not null default '0'::smallint,<br> &nbsp; quantity smallint not null default '0'::smallint,<br> &nbsp; quality real not null,<br> &nbsp; created_at timestamp with time zone not null default now(),<br> &nbsp; featured_promotion boolean not null default false,<br> &nbsp; top_selling boolean not null default false,<br> &nbsp; constraint Products_pkey primary key (slug),<br> &nbsp; constraint Products_category_fkey foreign KEY (category) references "Categories" (slug),<br> &nbsp; constraint Products_discount_check check ((discount <= 100)),<br> &nbsp; constraint Products_quality_check check (<br> &nbsp; &nbsp; (<br> &nbsp; &nbsp; &nbsp; (quality >= (0)::double precision)<br> &nbsp; &nbsp; &nbsp; and (quality <= (5)::double precision)<br> &nbsp; &nbsp; )<br> &nbsp; )<br> ) TABLESPACE pg_default; </div>
             </div>
           </div>
           
