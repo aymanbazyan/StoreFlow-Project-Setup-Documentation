@@ -90,6 +90,24 @@
               <p class="font-medium text-indigo-600 mb-2">Products:</p>
              <div class="bg-gray-700 text-gray-100 p-4 rounded-md font-mono text-sm overflow-x-auto"> create table public."Products" (<br> &nbsp; slug text not null,<br> &nbsp; name text not null,<br> &nbsp; price real not null,<br> &nbsp; img text null,<br> &nbsp; category text not null,<br> &nbsp; description text not null,<br> &nbsp; discount smallint not null default '0'::smallint,<br> &nbsp; quantity smallint not null default '0'::smallint,<br> &nbsp; quality real not null,<br> &nbsp; created_at timestamp with time zone not null default now(),<br> &nbsp; featured_promotion boolean not null default false,<br> &nbsp; top_selling boolean not null default false,<br> &nbsp; constraint Products_pkey primary key (slug),<br> &nbsp; constraint Products_category_fkey foreign KEY (category) references "Categories" (slug),<br> &nbsp; constraint Products_discount_check check ((discount <= 100)),<br> &nbsp; constraint Products_quality_check check (<br> &nbsp; &nbsp; (<br> &nbsp; &nbsp; &nbsp; (quality >= (0)::double precision)<br> &nbsp; &nbsp; &nbsp; and (quality <= (5)::double precision)<br> &nbsp; &nbsp; )<br> &nbsp; )<br> ) TABLESPACE pg_default; </div>
             </div>
+
+
+		        <div class="mb-4">
+              <p class="font-medium text-indigo-600 mb-2">Sets:</p>
+              <div class="bg-gray-700 text-gray-100 p-4 rounded-md font-mono text-sm overflow-x-auto">
+		  create table public."Sets" (
+		  &nbsp; slug text not null,
+		  &nbsp; name text not null,
+		  &nbsp; images text[] not null default '{}'::text[],
+		  &nbsp; made_by text not null,
+		  &nbsp; components text[] not null default '{}'::text[],
+		  &nbsp; description text not null,
+		  &nbsp; tags text[] not null default '{}'::text[],
+		  &nbsp; created_at timestamp with time zone null default now(),
+		  &nbsp; constraint Sets_pkey primary key (slug)
+		) TABLESPACE pg_default;
+              </div>
+            </div>
           </div>
           
           <div class="bg-gray-50 p-6 rounded-md border-l-4 border-indigo-500">
@@ -101,7 +119,8 @@
             <ul class="list-disc list-inside text-gray-700 space-y-1">
               <li>categories-images</li>
               <li>products-images</li>
-              <li>logos (optional)</li>
+              <li>sets-images</li>
+	      <li>other-images (optional, for partners logos, team members images, etc...)</li>
             </ul>
           </div>
           
