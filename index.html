@@ -136,74 +136,74 @@
                 </div>
               </div>
             </div>
-
-            <div class="bg-gray-50 p-6 rounded-md border-l-4 border-indigo-500">
-              <h3 class="text-lg font-semibold mb-3 flex items-center">
-                <i class="fas fa-folder mr-2 text-indigo-500"></i>
-                4. Create new storage buckets
-              </h3>
-              <p class="text-gray-600 mb-3">Create these storage buckets (all public):</p>
-              <ul class="list-disc list-inside text-gray-700 space-y-1">
-                <li>categories-images</li>
-                <li>products-images</li>
-                <li>sets-images</li>
-                <li>other-images (optional, for partners logos, team members images, etc...)</li>
-              </ul>
-            </div>
-
-            <div class="bg-gray-50 p-6 rounded-md border-l-4 border-indigo-500">
-              <h3 class="text-lg font-semibold mb-3 flex items-center">
-                <i class="fas fa-user-shield mr-2 text-indigo-500"></i>
-                5. Create Admin account
-              </h3>
-              <p class="text-gray-600">Go to Supabase authentication and create a new account manually (email & pass).
-                Turn off the option "Allow new users to sign up", and you can get the uuid from the users table.</p>
-            </div>
-
-            <div class="bg-gray-50 p-6 rounded-md border-l-4 border-indigo-500">
-              <h3 class="text-lg font-semibold mb-3 flex items-center">
-                <i class="fas fa-shield-alt mr-2 text-indigo-500"></i>
-                6. SQL Policies
-              </h3>
-              <p class="text-gray-600">Go to <code
-                  class="bg-gray-200 px-2 py-1 rounded">./setup-files/create-sql-polices.js</code> and write the table
-                name and admin uuid, then generate (using <code
-                  class="bg-gray-200 px-2 py-1 rounded">node create-sql-polices.js</code>) the SQL Policies code file
-                for
-                each Table and Bucket in Supabase (you need to paste the results in Supabase).</p>
-            </div>
-
-            <div class="bg-gray-50 p-6 rounded-md border-l-4 border-indigo-500">
-              <h3 class="text-lg font-semibold mb-3 flex items-center">
-                <i class="fas fa-cogs mr-2 text-indigo-500"></i>
-                7. Constants
-              </h3>
-              <p class="text-gray-600">Go to <code class="bg-gray-200 px-2 py-1 rounded">./src/helpers/config.js</code>
-                and edit whatever you need there.</p>
-            </div>
-
-            <div class="bg-gray-50 p-6 rounded-md border-l-4 border-indigo-500">
-              <h3 class="text-lg font-semibold mb-3 flex items-center">
-                <i class="fas fa-image mr-2 text-indigo-500"></i>
-                8. Logo
-              </h3>
-              <p class="text-gray-600">Go to <code class="bg-gray-200 px-2 py-1 rounded">./public/</code> and change
-                the
-                icon.png.</p>
-            </div>
-
-            <div class="bg-gray-50 p-6 rounded-md border-l-4 border-indigo-500">
-              <h3 class="text-lg font-semibold mb-3 flex items-center">
-                <i class="fas fa-boxes-stacked mr-2 text-indigo-500"></i>
-                9. Manage tables
-              </h3>
-              <p class="text-gray-600">Go to <code class="bg-gray-200 px-2 py-1 rounded">/admin</code> and log in with
-                your admin account.</p>
-              <p class="text-gray-600">You will be navigated to <code
-                  class="bg-gray-200 px-2 py-1 rounded">/admin/panel</code> where you can easily manage Products and
-                Categories.</p>
-            </div>
           </div>
+          <div class="bg-gray-50 p-6 rounded-md border-l-4 border-indigo-500">
+            <h3 class="text-lg font-semibold mb-3 flex items-center">
+              <i class="fas fa-folder mr-2 text-indigo-500"></i>
+              4. Create new storage buckets
+            </h3>
+            <p class="text-gray-600 mb-3">Create these storage buckets (all public):</p>
+            <ul class="list-disc list-inside text-gray-700 space-y-1">
+              <li>categories-images</li>
+              <li>products-images</li>
+              <li>sets-images</li>
+              <li>other-images (optional, for partners logos, team members images, etc...)</li>
+            </ul>
+          </div>
+
+          <div class="bg-gray-50 p-6 rounded-md border-l-4 border-indigo-500">
+            <h3 class="text-lg font-semibold mb-3 flex items-center">
+              <i class="fas fa-user-shield mr-2 text-indigo-500"></i>
+              5. Create Admin account
+            </h3>
+            <p class="text-gray-600">Go to Supabase authentication and create a new account manually (email & pass).
+              Turn off the option "Allow new users to sign up", and you can get the uuid from the users table.</p>
+          </div>
+
+          <div class="bg-gray-50 p-6 rounded-md border-l-4 border-indigo-500">
+            <h3 class="text-lg font-semibold mb-3 flex items-center">
+              <i class="fas fa-shield-alt mr-2 text-indigo-500"></i>
+              6. SQL Policies
+            </h3>
+            <p class="text-gray-600">Go to <code
+                class="bg-gray-200 px-2 py-1 rounded">./setup-files/create-sql-polices.js</code> and write the table
+              name and admin uuid, then generate (using <code
+                class="bg-gray-200 px-2 py-1 rounded">node create-sql-polices.js</code>) the SQL Policies code file
+              for
+              each Table and Bucket in Supabase (you need to paste the results in Supabase).</p>
+          </div>
+
+          <div class="bg-gray-50 p-6 rounded-md border-l-4 border-indigo-500">
+            <h3 class="text-lg font-semibold mb-3 flex items-center">
+              <i class="fas fa-cogs mr-2 text-indigo-500"></i>
+              7. Constants
+            </h3>
+            <p class="text-gray-600">Go to <code class="bg-gray-200 px-2 py-1 rounded">./src/helpers/config.js</code>
+              and edit whatever you need there.</p>
+          </div>
+
+          <div class="bg-gray-50 p-6 rounded-md border-l-4 border-indigo-500">
+            <h3 class="text-lg font-semibold mb-3 flex items-center">
+              <i class="fas fa-image mr-2 text-indigo-500"></i>
+              8. Logo
+            </h3>
+            <p class="text-gray-600">Go to <code class="bg-gray-200 px-2 py-1 rounded">./public/</code> and change
+              the
+              icon.png.</p>
+          </div>
+
+          <div class="bg-gray-50 p-6 rounded-md border-l-4 border-indigo-500">
+            <h3 class="text-lg font-semibold mb-3 flex items-center">
+              <i class="fas fa-boxes-stacked mr-2 text-indigo-500"></i>
+              9. Manage tables
+            </h3>
+            <p class="text-gray-600">Go to <code class="bg-gray-200 px-2 py-1 rounded">/admin</code> and log in with
+              your admin account.</p>
+            <p class="text-gray-600">You will be navigated to <code
+                class="bg-gray-200 px-2 py-1 rounded">/admin/panel</code> where you can easily manage Products and
+              Categories.</p>
+          </div>
+        </div>
       </section>
 
       <p class="text-red-600">Source code is unavailable right now.</p>
