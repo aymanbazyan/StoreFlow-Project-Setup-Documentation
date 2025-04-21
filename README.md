@@ -1,4 +1,4 @@
-This is a next.js e-store that is easily editable and can be used for many different store with a beautiful & simple interface, Good search/filter/sort menu and an easy Admin panel for managing products, categories, sales and promoted products.
+This is a Next.js e-store that is easily editable and can be used for different types of stores with a beautiful & simple interface, a good search/filter/sort menu, and an easy admin panel for managing everything in the store, like products, categories, sales, and promoted products.
 
 [Pc store example demo](https://spring-hardware-nextjs.vercel.app/)
 
