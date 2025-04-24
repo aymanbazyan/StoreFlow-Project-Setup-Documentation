@@ -81,12 +81,13 @@
             <div class="mb-4">
               <p class="font-medium text-indigo-600 mb-2">Categories:</p>
               <div class="bg-gray-700 text-gray-100 p-4 rounded-md font-mono text-sm overflow-x-auto">
-                create table public."Categories" (<br>
-                &nbsp; slug text not null,<br>
-                &nbsp; name text not null,<br>
-                &nbsp; img text null,<br>
-                &nbsp; created_at timestamp with time zone not null default now(),<br>
-                &nbsp; constraint Categories_pkey primary key (slug)<br>
+                create table public."Categories" (
+                slug text not null,
+                name text not null,
+                img text null,
+                created_at timestamp with time zone not null default now(),
+                is_featured boolean null default false,
+                constraint Categories_pkey primary key (slug)
                 ) TABLESPACE pg_default;
               </div>
             </div>
@@ -94,59 +95,80 @@
             <div class="mb-4">
               <p class="font-medium text-indigo-600 mb-2">Products:</p>
               <div class="bg-gray-700 text-gray-100 p-4 rounded-md font-mono text-sm overflow-x-auto mb-4"> create table
-                create table public."Products" (<br>
-                slug text not null,<br>
-                name text not null,<br>
-                price real not null,<br>
-                category text not null,<br>
-                description text not null,<br>
-                discount smallint not null default '0'::smallint,<br>
-                quantity smallint not null default '0'::smallint,<br>
-                quality real not null,<br>
-                created_at timestamp with time zone not null default now(),<br>
-                featured_promotion boolean not null default false,<br>
-                top_selling boolean not null default false,<br>
-                images text[] not null default '{}'::text[],<br>
-                related_products text[] not null default '{}'::text[],<br>
-                constraint Products_pkey primary key (slug),<br>
-                constraint Products_category_fkey foreign KEY (category) references "Categories" (slug),<br>
-                constraint Products_discount_check check ((discount <= 100)),<br>
-                  constraint Products_quality_check check (<br>
-                  (<br>
-                  (quality >= (0)::double precision)<br>
-                  and (quality <= (5)::double precision)<br>
-                    )
-                    )
-                    ) TABLESPACE pg_default;<br>
+                create table public."Config" (
+                slug text not null,
+                "themeStringObj" text null default '{"primary":"blue","secondary":"indigo"}'::text,
+                tos text null default ''::text,
+                about_us text null default ''::text,
+                mission text null default ''::text,
+                partners_description text null default ''::text,
+                connect_description text null default ''::text,
+                constraint Config_pkey primary key (slug)
+                ) TABLESPACE pg_default;
               </div>
               <div class="mb-4">
                 <p class="font-medium text-indigo-600 mb-2">Sets:</p>
                 <div class="bg-gray-700 text-gray-100 p-4 rounded-md font-mono text-sm overflow-x-auto">
-                  create table public."Sets" (<br>
-                  &nbsp; slug text not null,<br>
-                  &nbsp; name text not null,<br>
-                  &nbsp; images text[] not null default '{}'::text[],<br>
-                  &nbsp; made_by text not null,<br>
-                  &nbsp; components text[] not null default '{}'::text[],<br>
-                  &nbsp; description text not null,<br>
-                  &nbsp; tags text[] not null default '{}'::text[],<br>
-                  &nbsp; created_at timestamp with time zone null default now(),<br>
-                  &nbsp; constraint Sets_pkey primary key (slug)<br>
-                  ) TABLESPACE pg_default;<br>
+                  create table public."Sets" (
+                  slug text not null,
+                  name text not null,
+                  images text[] not null default '{}'::text[],
+                  made_by text not null,
+                  components text[] not null default '{}'::text[],
+                  description text not null,
+                  tags text[] not null default '{}'::text[],
+                  created_at timestamp with time zone null default now(),
+                  related_products text[] not null default '{}'::text[],
+                  constraint Sets_pkey primary key (slug)
+                  ) TABLESPACE pg_default;
                 </div>
               </div>
 
               <div class="mb-4">
                 <p class="font-medium text-indigo-600 mb-2">Config:</p>
                 <div class="bg-gray-700 text-gray-100 p-4 rounded-md font-mono text-sm overflow-x-auto">
-                  create table public."Config" (<br>
-                  &nbsp; slug text not null,<br>
-                  &nbsp; "themeStringObj" text null default '{"primary":"blue","secondary":"indigo"}'::text,<br>
-                  &nbsp; constraint Config_pkey primary key (slug)<br>
+                  create table public."Config" (
+                  slug text not null,
+                  "themeStringObj" text null default '{"primary":"blue","secondary":"indigo"}'::text,
+                  tos text null default ''::text,
+                  about_us text null default ''::text,
+                  mission text null default ''::text,
+                  partners_description text null default ''::text,
+                  connect_description text null default ''::text,
+                  constraint Config_pkey primary key (slug)
                   ) TABLESPACE pg_default;
                 </div>
                 <p class="font-medium my-1">And create 1 row with the slug of "general"</p>
               </div>
+
+              <div class="mb-4">
+                <p class="font-medium text-indigo-600 mb-2">Team:</p>
+                <div class="bg-gray-700 text-gray-100 p-4 rounded-md font-mono text-sm overflow-x-auto">
+                  create table public."Team" (
+                  slug text not null,
+                  name text not null,
+                  role text null,
+                  img text null,
+                  constraint Team_pkey primary key (slug)
+                  ) TABLESPACE pg_default;
+                </div>
+                <p class="font-medium my-1">And create 1 row with the slug of "general"</p>
+              </div>
+
+
+
+              <div class="mb-4">
+                <p class="font-medium text-indigo-600 mb-2">Partners:</p>
+                <div class="bg-gray-700 text-gray-100 p-4 rounded-md font-mono text-sm overflow-x-auto">
+                  create table public."Partners" (
+                  slug text not null,
+                  img text not null,
+                  constraint Partners_pkey primary key (slug)
+                  ) TABLESPACE pg_default;
+                </div>
+                <p class="font-medium my-1">And create 1 row with the slug of "general"</p>
+              </div>
+
 
 
             </div>
@@ -161,7 +183,8 @@
               <li>categories-images</li>
               <li>products-images</li>
               <li>sets-images</li>
-              <li>other-images (optional, for partners logos, team members images, etc...)</li>
+              <li>team-images</li>
+              <li>partners-images</li>
             </ul>
           </div>
 
@@ -216,8 +239,8 @@
             <p class="text-gray-600">Go to <code class="bg-gray-200 px-2 py-1 rounded">/admin</code> and log in with
               your admin account.</p>
             <p class="text-gray-600">You will be navigated to <code
-                class="bg-gray-200 px-2 py-1 rounded">/admin/panel</code> where you can easily manage Products and
-              Categories.</p>
+                class="bg-gray-200 px-2 py-1 rounded">/admin/panel</code> where you can easily manage categories,
+              products, sets, team, partners, general info and themes.</p>
           </div>
         </div>
       </section>
