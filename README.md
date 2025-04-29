@@ -15,3 +15,6 @@ Admin panel screenshots:
 ![image](https://github.com/user-attachments/assets/b8472162-7e48-48e4-b48d-147ba744fafc)
 Card view (for small screens):
 ![image](https://github.com/user-attachments/assets/5782eb9f-8b3f-4fc6-a99b-16eb01fad08c)
+![image](https://github.com/user-attachments/assets/c46263e3-0697-4c99-a5a3-4aadaefff64e)
+![image](https://github.com/user-attachments/assets/427d4075-1964-4629-8821-9550676f76b1)
+![image](https://github.com/user-attachments/assets/e6c3d46c-364a-4169-8286-636550c5274c)
