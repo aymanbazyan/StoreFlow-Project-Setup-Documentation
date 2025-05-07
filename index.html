@@ -7,17 +7,88 @@
   <title>StoreFlow - Setup Documentation</title>
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    .code-block {
+      position: relative;
+    }
+
+    .code-content {
+      padding-right: 36px;
+      /* Make space for the copy button */
+    }
+
+    .copy-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      z-index: 10;
+      padding: 6px 10px;
+      background-color: rgba(75, 85, 99, 0.8);
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    .copy-btn:hover {
+      background-color: rgba(75, 85, 99, 1);
+    }
+
+    .tooltip {
+      position: relative;
+      display: inline-block;
+    }
+
+    .tooltip .tooltiptext {
+      visibility: hidden;
+      width: 140px;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      border-radius: 6px;
+      padding: 5px;
+      position: absolute;
+      z-index: 1;
+      bottom: 125%;
+      left: 50%;
+      margin-left: -70px;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .tooltip .tooltiptext::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      margin-left: -5px;
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }
+
+    .tooltip:hover .tooltiptext {
+      visibility: visible;
+      opacity: 1;
+    }
+  </style>
 </head>
 
 <body class="bg-gray-50 text-gray-800">
   <header class="bg-gradient-to-r from-blue-500 to-indigo-600 text-white shadow-md">
     <div class="container mx-auto px-4 py-6">
-      <div class="flex items-center justify-between">
+      <div class="flex flex-wrap gap-1 items-center justify-between">
         <div class="flex items-center space-x-3">
           <i class="fas fa-bolt text-2xl"></i>
           <h1 class="text-2xl font-bold">StoreFlow</h1>
         </div>
-        <div>
+        <div class="flex flex-wrap gap-1 items-center space-x-4">
+          <a href="https://github.com/aymanbazyan/StoreFlow-Project-Setup-Documentation/tree/main" target="_blank"
+            class="bg-gray-800 text-white hover:bg-gray-700 px-4 py-2 rounded-md font-medium transition duration-200 flex items-center space-x-2">
+            <i class="fab fa-github"></i>
+            <span>GitHub</span>
+          </a>
           <a href="https://spring-hardware-nextjs.vercel.app/" target="_blank"
             class="bg-white text-blue-600 hover:bg-blue-50 px-4 py-2 rounded-md font-medium transition duration-200 flex items-center space-x-2">
             <i class="fas fa-external-link-alt"></i>
@@ -36,12 +107,19 @@
         <h2 class="text-2xl font-semibold mb-4 text-indigo-600 flex items-center">
           <i class="fas fa-link mr-2"></i> Demo Example
         </h2>
-        <div class="bg-gray-50 p-4 rounded-md">
+        <div class="bg-gray-50 p-4 rounded-md space-y-2">
           <a href="https://spring-hardware-nextjs.vercel.app/" target="_blank"
             class="text-blue-600 hover:text-blue-800 hover:underline flex items-center">
+
             <i class="fas fa-external-link-alt mr-2"></i>
-            <span>https://spring-hardware-nextjs.vercel.app/</span>
+            <span>[1] https://spring-hardware-nextjs.vercel.app/</span>
           </a>
+
+          <!-- <a href="https://spring-hardware-nextjs.vercel.app/" target="_blank"
+            class="text-blue-600 hover:text-blue-800 hover:underline flex items-center">
+            <i class="fas fa-external-link-alt mr-2"></i>
+            <span>[2] https://spring-hardware-nextjs.vercel.app/</span>
+          </a> -->
         </div>
       </section>
 
@@ -50,7 +128,7 @@
           <i class="fas fa-rocket mr-2"></i> Setup
         </h2>
 
-        <div class="space-y-6">
+        <div class="mb-8 space-y-6">
           <div class="bg-gray-50 p-6 rounded-md border-l-4 border-indigo-500">
             <h3 class="text-lg font-semibold mb-3 flex items-center">
               <i class="fas fa-database mr-2 text-indigo-500"></i>
@@ -66,9 +144,15 @@
             </h3>
             <p class="text-gray-600 mb-3">Create a <code class="bg-gray-200 px-2 py-1 rounded">.env.local</code> file
               and add the following values:</p>
-            <div class="bg-gray-700 text-gray-100 p-4 rounded-md font-mono text-sm">
-              <div class="mb-1">SUPABASE_URL=EXAMPLE</div>
-              <div>SUPABASE_KEY=EXAMPLE</div>
+            <div class="code-block bg-gray-700 text-gray-100 p-4 rounded-md font-mono text-sm">
+              <div class="code-content">
+                SUPABASE_URL=EXAMPLE
+                SUPABASE_KEY=EXAMPLE
+              </div>
+              <button onclick="copyCode(this)" class="copy-btn tooltip">
+                <i class="far fa-copy"></i>
+                <span class="tooltiptext">Copy to clipboard</span>
+              </button>
             </div>
           </div>
 
@@ -80,100 +164,190 @@
 
             <div class="mb-4">
               <p class="font-medium text-indigo-600 mb-2">Categories:</p>
-              <div class="bg-gray-700 text-gray-100 p-4 rounded-md font-mono text-sm overflow-x-auto">
-                create table public."Categories" (
-                slug text not null,
-                name text not null,
-                img text null,
-                created_at timestamp with time zone not null default now(),
-                is_featured boolean null default false,
-                constraint Categories_pkey primary key (slug)
-                ) TABLESPACE pg_default;
+              <div class="code-block bg-gray-700 text-gray-100 p-4 rounded-md font-mono text-sm ">
+                <div class="code-content">
+                  create table public."Categories" (
+                  slug text not null,
+                  name text not null,
+                  img text null,
+                  created_at timestamp with time zone not null default now(),
+                  is_featured boolean null default false,
+                  constraint Categories_pkey primary key (slug)
+                  ) TABLESPACE pg_default;
+                </div>
+                <button onclick="copyCode(this)" class="copy-btn tooltip">
+                  <i class="far fa-copy"></i>
+                  <span class="tooltiptext">Copy to clipboard</span>
+                </button>
               </div>
             </div>
 
             <div class="mb-4">
               <p class="font-medium text-indigo-600 mb-2">Products:</p>
-              <div class="bg-gray-700 text-gray-100 p-4 rounded-md font-mono text-sm overflow-x-auto mb-4"> create table
-                create table public."Config" (
-                slug text not null,
-                "themeStringObj" text null default '{"primary":"blue","secondary":"indigo"}'::text,
-                tos text null default ''::text,
-                about_us text null default ''::text,
-                mission text null default ''::text,
-                partners_description text null default ''::text,
-                connect_description text null default ''::text,
-                constraint Config_pkey primary key (slug)
-                ) TABLESPACE pg_default;
-              </div>
-              <div class="mb-4">
-                <p class="font-medium text-indigo-600 mb-2">Sets:</p>
-                <div class="bg-gray-700 text-gray-100 p-4 rounded-md font-mono text-sm overflow-x-auto">
-                  create table public."Sets" (
+              <div class="code-block bg-gray-700 text-gray-100 p-4 rounded-md font-mono text-sm  mb-4">
+                <div class="code-content">
+                  create table public."Products" (
                   slug text not null,
                   name text not null,
-                  images text[] not null default '{}'::text[],
-                  made_by text not null,
-                  components text[] not null default '{}'::text[],
+                  price real not null,
+                  category text not null,
                   description text not null,
-                  tags text[] not null default '{}'::text[],
-                  created_at timestamp with time zone null default now(),
+                  discount smallint not null default '0'::smallint,
+                  quantity smallint not null default '0'::smallint,
+                  quality real not null,
+                  created_at timestamp with time zone not null default now(),
+                  featured_promotion boolean not null default false,
+                  top_selling boolean not null default false,
+                  images text[] not null default '{}'::text[],
                   related_products text[] not null default '{}'::text[],
-                  constraint Sets_pkey primary key (slug)
-                  ) TABLESPACE pg_default;
+                  constraint Products_pkey primary key (slug),
+                  constraint Products_category_fkey foreign KEY (category) references "Categories" (slug),
+                  constraint Products_discount_check check ((discount <= 100)), constraint Products_quality_check check
+                    ( ( (quality>= (0)::double precision) and (quality <= (5)::double precision) ) ) ) TABLESPACE
+                      pg_default; </div>
+                      <button onclick="copyCode(this)" class="copy-btn tooltip">
+                        <i class="far fa-copy"></i>
+                        <span class="tooltiptext">Copy to clipboard</span>
+                      </button>
                 </div>
               </div>
 
               <div class="mb-4">
                 <p class="font-medium text-indigo-600 mb-2">Config:</p>
-                <div class="bg-gray-700 text-gray-100 p-4 rounded-md font-mono text-sm overflow-x-auto">
-                  create table public."Config" (
-                  slug text not null,
-                  "themeStringObj" text null default '{"primary":"blue","secondary":"indigo"}'::text,
-                  tos text null default ''::text,
-                  about_us text null default ''::text,
-                  mission text null default ''::text,
-                  partners_description text null default ''::text,
-                  connect_description text null default ''::text,
-                  constraint Config_pkey primary key (slug)
-                  ) TABLESPACE pg_default;
+                <div class="code-block bg-gray-700 text-gray-100 p-4 rounded-md font-mono text-sm ">
+                  <div class="code-content">
+                    create table public."Config" (
+                    slug text not null,
+                    "themeStringObj" text null default '{"primary":"blue","secondary":"indigo"}'::text,
+                    tos text null default ''::text,
+                    about_us text null default ''::text,
+                    mission text null default ''::text,
+                    partners_description text null default ''::text,
+                    connect_description text null default ''::text,
+                    constraint Config_pkey primary key (slug)
+                    ) TABLESPACE pg_default;
+                  </div>
+                  <button onclick="copyCode(this)" class="copy-btn tooltip">
+                    <i class="far fa-copy"></i>
+                    <span class="tooltiptext">Copy to clipboard</span>
+                  </button>
                 </div>
-                <p class="font-medium my-1">And create 1 row with the slug of "general", leave other columns to default.</p>
+                <p class="font-medium my-1">And create 1 row with the slug of "general", leave other columns to default.
+                </p>
+              </div>
+
+              <div class="mb-4">
+                <p class="font-medium text-indigo-600 mb-2">Sets:</p>
+                <div class="code-block bg-gray-700 text-gray-100 p-4 rounded-md font-mono text-sm ">
+                  <div class="code-content">
+                    create table public."Sets" (
+                    slug text not null,
+                    name text not null,
+                    images text[] not null default '{}'::text[],
+                    made_by text not null,
+                    components text[] not null default '{}'::text[],
+                    description text not null,
+                    tags text[] not null default '{}'::text[],
+                    created_at timestamp with time zone null default now(),
+                    related_products text[] not null default '{}'::text[],
+                    price real not null default '0'::real,
+                    discount real not null default '0'::real,
+                    constraint Sets_pkey primary key (slug)
+                    ) TABLESPACE pg_default;
+                  </div>
+                  <button onclick="copyCode(this)" class="copy-btn tooltip">
+                    <i class="far fa-copy"></i>
+                    <span class="tooltiptext">Copy to clipboard</span>
+                  </button>
+                </div>
               </div>
 
               <div class="mb-4">
                 <p class="font-medium text-indigo-600 mb-2">Team:</p>
-                <div class="bg-gray-700 text-gray-100 p-4 rounded-md font-mono text-sm overflow-x-auto">
-                  create table public."Team" (
-                  slug text not null,
-                  name text not null,
-                  role text null,
-                  img text null,
-                  constraint Team_pkey primary key (slug)
-                  ) TABLESPACE pg_default;
+                <div class="code-block bg-gray-700 text-gray-100 p-4 rounded-md font-mono text-sm ">
+                  <div class="code-content">
+                    create table public."Team" (
+                    slug text not null,
+                    name text not null,
+                    role text null,
+                    img text null,
+                    constraint Team_pkey primary key (slug)
+                    ) TABLESPACE pg_default;
+                  </div>
+                  <button onclick="copyCode(this)" class="copy-btn tooltip">
+                    <i class="far fa-copy"></i>
+                    <span class="tooltiptext">Copy to clipboard</span>
+                  </button>
                 </div>
-             
               </div>
-
-
 
               <div class="mb-4">
                 <p class="font-medium text-indigo-600 mb-2">Partners:</p>
-                <div class="bg-gray-700 text-gray-100 p-4 rounded-md font-mono text-sm overflow-x-auto">
-                  create table public."Partners" (
-                  slug text not null,
-                  img text not null,
-                  constraint Partners_pkey primary key (slug)
-                  ) TABLESPACE pg_default;
+                <div class="code-block bg-gray-700 text-gray-100 p-4 rounded-md font-mono text-sm ">
+                  <div class="code-content">
+                    create table public."Partners" (
+                    slug text not null,
+                    img text not null,
+                    constraint Partners_pkey primary key (slug)
+                    ) TABLESPACE pg_default;
+                  </div>
+                  <button onclick="copyCode(this)" class="copy-btn tooltip">
+                    <i class="far fa-copy"></i>
+                    <span class="tooltiptext">Copy to clipboard</span>
+                  </button>
                 </div>
-            
               </div>
 
+              <div class="mb-4">
+                <p class="font-medium text-indigo-600 mb-2">Themes:</p>
+                <div class="code-block bg-gray-700 text-gray-100 p-4 rounded-md font-mono text-sm ">
+                  <div class="code-content">
+                    create table public."Themes" (
+                    slug text not null default 'general'::text,
+                    "themeStringObj" text not null default '{"primary":"blue","secondary":"violet"}'::text,
+                    img text null default ''::text,
+                    constraint Themes_pkey primary key (slug)
+                    ) TABLESPACE pg_default;
+                  </div>
+                  <button onclick="copyCode(this)" class="copy-btn tooltip">
+                    <i class="far fa-copy"></i>
+                    <span class="tooltiptext">Copy to clipboard</span>
+                  </button>
+                </div>
+              </div>
 
+              <div class="mb-4">
+                <p class="font-medium text-indigo-600 mb-2">Orders:</p>
+                <div class="code-block bg-gray-700 text-gray-100 p-4 rounded-md font-mono text-sm ">
+                  <div class="code-content">
+                    create table public."Orders" (
+                    slug text not null,
+                    created_at timestamp with time zone null default now(),
+                    name text not null,
+                    email text not null,
+                    address text not null,
+                    city text not null,
+                    postal_code text null,
+                    notes text null,
+                    payment_method text not null,
+                    ordered_products text not null,
+                    shipping_fee real not null,
+                    sub_total real not null,
+                    phone integer not null,
+                    constraint Orders_pkey primary key (slug)
+                    ) TABLESPACE pg_default;
+                  </div>
+                  <button onclick="copyCode(this)" class="copy-btn tooltip">
+                    <i class="far fa-copy"></i>
+                    <span class="tooltiptext">Copy to clipboard</span>
+                  </button>
+                </div>
+              </div>
 
             </div>
           </div>
-          <div class="bg-gray-50 p-6 rounded-md border-l-4 border-indigo-500">
+
+          <div class="mb-8 bg-gray-50 p-6 rounded-md border-l-4 border-indigo-500">
             <h3 class="text-lg font-semibold mb-3 flex items-center">
               <i class="fas fa-folder mr-2 text-indigo-500"></i>
               4. Create new storage buckets
@@ -185,10 +359,11 @@
               <li>sets-images</li>
               <li>team-images</li>
               <li>partners-images</li>
+              <li>themes-images</li>
             </ul>
           </div>
 
-          <div class="bg-gray-50 p-6 rounded-md border-l-4 border-indigo-500">
+          <div class="mb-8 bg-gray-50 p-6 rounded-md border-l-4 border-indigo-500">
             <h3 class="text-lg font-semibold mb-3 flex items-center">
               <i class="fas fa-user-shield mr-2 text-indigo-500"></i>
               5. Create Admin account
@@ -197,20 +372,20 @@
               Turn off the option "Allow new users to sign up", and you can get the uuid from the users table.</p>
           </div>
 
-          <div class="bg-gray-50 p-6 rounded-md border-l-4 border-indigo-500">
+          <div class="mb-8 bg-gray-50 p-6 rounded-md border-l-4 border-indigo-500">
             <h3 class="text-lg font-semibold mb-3 flex items-center">
               <i class="fas fa-shield-alt mr-2 text-indigo-500"></i>
               6. SQL Policies (using supabase SQL editor)
             </h3>
-            <p class="text-gray-600">Go to <code
+            <p class="mb-8 text-gray-600">Go to <code
                 class="bg-gray-200 px-2 py-1 rounded">./setup-files/create-sql-polices.js</code> and write the table
               name and admin uuid (you must do it for each table), using <code
-                class="bg-gray-200 px-2 py-1 rounded">node create-sql-polices.js</code> it will generate an SQL
-              Policies code file for the Table or Bucket, (you'll need to paste the results of that file in Supabase SQL
-              editor).</p>
+                class="bg-gray-200 px-2 py-1 rounded">node create-sql-polices.js</code> it will generate an SQL Policies
+              code file for the Table or Bucket, (you'll need to paste the results of that file in Supabase SQL editor).
+            </p>
           </div>
 
-          <div class="bg-gray-50 p-6 rounded-md border-l-4 border-indigo-500">
+          <div class="mb-8 bg-gray-50 p-6 rounded-md border-l-4 border-indigo-500">
             <h3 class="text-lg font-semibold mb-3 flex items-center">
               <i class="fas fa-cogs mr-2 text-indigo-500"></i>
               7. Constants
@@ -219,26 +394,23 @@
               and edit whatever constant you need there.</p>
           </div>
 
-          <div class="bg-gray-50 p-6 rounded-md border-l-4 border-indigo-500">
+          <div class="mb-8 bg-gray-50 p-6 rounded-md border-l-4 border-indigo-500">
             <h3 class="text-lg font-semibold mb-3 flex items-center">
               <i class="fa fa-language mr-2 text-indigo-500"></i>
               8. Language
             </h3>
             <p class="text-gray-600">Go to <code class="bg-gray-200 px-2 py-1 rounded">./src/helpers/language.js</code>
               and edit any string you want in the website (e.g change "Sets" to "Builds" or re-write everything in
-              another language), and you can also change the direction of the website if you want to use
-              Arabic or
-              Hebrew
-              language.</p>
+              another language), and you can also change the direction of the website if you want to use Arabic or
+              Hebrew language.</p>
           </div>
 
-          <div class="bg-gray-50 p-6 rounded-md border-l-4 border-indigo-500">
+          <div class="mb-8 bg-gray-50 p-6 rounded-md border-l-4 border-indigo-500">
             <h3 class="text-lg font-semibold mb-3 flex items-center">
               <i class="fas fa-image mr-2 text-indigo-500"></i>
               9. Logo and banner
             </h3>
-            <p class="text-gray-600">Go to <code class="bg-gray-200 px-2 py-1 rounded">./public/</code> and change
-              the
+            <p class="text-gray-600">Go to <code class="bg-gray-200 px-2 py-1 rounded">./public/</code> and change the
               icon.png</p>
             <p class="text-gray-600">Go to <code class="bg-gray-200 px-2 py-1 rounded">./src/app/assets</code> and
               change the header-bg.png (optional)</p>
@@ -255,14 +427,23 @@
                 class="bg-gray-200 px-2 py-1 rounded">/admin/panel</code> where you can easily manage categories,
               products, sets, team, partners, general info and themes.</p>
           </div>
-        </div>
       </section>
 
-      <p class="text-red-600">Source code is unavailable right now.</p>
+      <div class="bg-indigo-50 p-6 rounded-md border border-indigo-200 mt-8">
+        <h3 class="text-lg font-semibold mb-2 text-indigo-700">Get Source Code</h3>
+        <p class="text-gray-700">Visit my GitHub repository for full source code and detailed documentation:</p>
+        <p class="text-red-500">Unavailable right now</p>
+      </div>
     </div>
 
+    <a href="https://github.com/aymanbazyan/StoreFlow-Project-Setup-Documentation/tree/main" target="_blank"
+      class="mt-3 inline-flex items-center px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition duration-200">
+      <i class="fab fa-github mr-2"></i>
+      GitHub Repository
+    </a>
+
     <footer class="text-center text-gray-500 text-sm mt-8 pb-8">
-      <p>StoreFlow Project Setup Documentation</p>
+      <p>StoreFlow Project Setup Documentation © 2025</p>
     </footer>
   </main>
 
@@ -271,6 +452,28 @@
       <i class="fas fa-arrow-up"></i>
     </a>
   </div>
+
+  <script>
+    function copyCode(button) {
+      const codeBlock = button.closest('.code-block');
+      const codeContent = codeBlock.querySelector('.code-content');
+
+      // Get only the text content from the code-content element
+      const code = codeContent.textContent.trim();
+
+      navigator.clipboard.writeText(code)
+        .then(() => {
+          const tooltip = button.querySelector('.tooltiptext');
+          tooltip.innerHTML = "Copied!";
+          setTimeout(() => {
+            tooltip.innerHTML = "Copy to clipboard";
+          }, 2000);
+        })
+        .catch(err => {
+          console.error('Could not copy text: ', err);
+        });
+    }
+  </script>
 </body>
 
 </html>
