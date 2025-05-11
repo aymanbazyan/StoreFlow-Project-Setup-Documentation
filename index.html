@@ -240,20 +240,22 @@
                 <p class="font-medium text-indigo-600 mb-2">Sets:</p>
                 <div class="code-block bg-gray-700 text-gray-100 p-4 rounded-md font-mono text-sm ">
                   <div class="code-content">
-                    create table public."Sets" (
-                    slug text not null,
-                    name text not null,
-                    images text[] not null default '{}'::text[],
-                    made_by text not null,
-                    components text[] not null default '{}'::text[],
-                    description text not null,
-                    tags text[] not null default '{}'::text[],
-                    created_at timestamp with time zone null default now(),
-                    related_products text[] not null default '{}'::text[],
-                    price real not null default '0'::real,
-                    discount real not null default '0'::real,
-                    constraint Sets_pkey primary key (slug)
-                    ) TABLESPACE pg_default;
+                   create table public."Sets" (
+  slug text not null,
+  name text not null,
+  images text[] not null default '{}'::text[],
+  made_by text not null,
+  components text[] not null default '{}'::text[],
+  description text not null,
+  tags text[] not null default '{}'::text[],
+  created_at timestamp with time zone null default now(),
+  related_products text[] not null default '{}'::text[],
+  price real not null default '0'::real,
+  discount real not null default '0'::real,
+  quantity smallint not null default '0'::smallint,
+  constraint Sets_pkey primary key (slug),
+  constraint Sets_quantity_check check ((quantity >= '-1'::integer))
+) TABLESPACE pg_default;
                   </div>
                   <button onclick="copyCode(this)" class="copy-btn tooltip">
                     <i class="far fa-copy"></i>
