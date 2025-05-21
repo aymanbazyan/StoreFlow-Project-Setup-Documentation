@@ -7,14 +7,15 @@
   <title>StoreFlow - Setup Documentation</title>
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="icon" type="image" href="https://cdn-icons-png.flaticon.com/512/657/657104.png">
   <style>
+    /* Core Component Styles */
     .code-block {
       position: relative;
     }
 
     .code-content {
       padding-right: 36px;
-      /* Make space for the copy button */
     }
 
     .copy-btn {
@@ -35,6 +36,7 @@
       background-color: rgba(75, 85, 99, 1);
     }
 
+    /* Tooltip Component */
     .tooltip {
       position: relative;
       display: inline-block;
@@ -72,10 +74,153 @@
       visibility: visible;
       opacity: 1;
     }
+
+    /* Consistent spacing classes */
+    .section {
+      margin-bottom: 2rem;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: #4f46e5;
+    }
+
+    .section-title i {
+      margin-right: 0.5rem;
+    }
+
+    .step-container {
+      background-color: #f9fafb;
+      padding: 1.5rem;
+      border-radius: 0.375rem;
+      border-left: 4px solid #6366f1;
+      margin-bottom: 1.5rem;
+    }
+
+    .step-title {
+      display: flex;
+      align-items: center;
+      font-size: 1.125rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+
+    .step-title i {
+      margin-right: 0.5rem;
+      color: #6366f1;
+    }
+
+    .instruction {
+      color: #4b5563;
+      margin-bottom: 0.75rem;
+    }
+
+    .code-snippet {
+      background-color: #374151;
+      color: #f3f4f6;
+      padding: 1rem;
+      border-radius: 0.375rem;
+      font-family: monospace;
+      font-size: 0.875rem;
+      margin: 0.75rem 0;
+    }
+
+    .inline-code {
+      background-color: #e5e7eb;
+      padding: 0.125rem 0.5rem;
+      border-radius: 0.25rem;
+    }
+
+    /* Gallery Styles */
+    .gallery-item {
+      transition: all 0.3s ease;
+    }
+
+    .gallery-item:hover {
+      transform: translateY(-5px);
+    }
+
+    /* Lightbox Styles */
+    .lightbox {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.85);
+      overflow: auto;
+      transition: opacity 0.3s;
+    }
+
+    .lightbox.active {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lightbox-content {
+      max-width: 80%;
+      max-height: 80%;
+      margin: auto;
+      display: block;
+    }
+
+    .lightbox-caption {
+      color: white;
+      position: absolute;
+      bottom: 2rem;
+      text-align: center;
+      left: 0;
+      right: 0;
+      padding: 1rem;
+    }
+
+    .lightbox-controls {
+      position: absolute;
+      top: 0;
+      right: 0;
+      padding: 1rem;
+    }
+
+    .lightbox-close {
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+      background: none;
+      border: none;
+    }
+
+    .lightbox-prev,
+    .lightbox-next {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      color: white;
+      font-size: 2rem;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 1rem;
+    }
+
+    .lightbox-prev {
+      left: 1rem;
+    }
+
+    .lightbox-next {
+      right: 1rem;
+    }
   </style>
 </head>
 
 <body class="bg-gray-50 text-gray-800">
+  <!-- Header Section -->
   <header class="bg-gradient-to-r from-blue-500 to-indigo-600 text-white shadow-md">
     <div class="container mx-auto px-4 py-6">
       <div class="flex flex-wrap gap-1 items-center justify-between">
@@ -99,338 +244,658 @@
     </div>
   </header>
 
+  <!-- Main Content -->
   <main class="container mx-auto px-4 py-8 max-w-4xl">
     <div class="bg-white rounded-lg shadow-lg p-8 mb-8">
       <h1 class="text-3xl font-bold mb-6 text-indigo-700 border-b pb-3">Project Setup Documentation</h1>
 
-      <section class="mb-8">
-        <h2 class="text-2xl font-semibold mb-4 text-indigo-600 flex items-center">
-          <i class="fas fa-link mr-2"></i> Demo Example
+      <!-- Demo Example Section -->
+      <section class="section">
+        <h2 class="section-title">
+          <i class="fas fa-link"></i> Demo Example
         </h2>
-        <div class="bg-gray-50 p-4 rounded-md space-y-2">
+        <div class="bg-gray-50 p-4 rounded-md">
           <a href="https://spring-hardware-nextjs.vercel.app/" target="_blank"
             class="text-blue-600 hover:text-blue-800 hover:underline flex items-center">
-
             <i class="fas fa-external-link-alt mr-2"></i>
             <span>[1] https://spring-hardware-nextjs.vercel.app/</span>
           </a>
-
-          <!-- <a href="https://spring-hardware-nextjs.vercel.app/" target="_blank"
-            class="text-blue-600 hover:text-blue-800 hover:underline flex items-center">
-            <i class="fas fa-external-link-alt mr-2"></i>
-            <span>[2] https://spring-hardware-nextjs.vercel.app/</span>
-          </a> -->
         </div>
       </section>
 
-      <section class="mb-8">
-        <h2 class="text-2xl font-semibold mb-4 text-indigo-600 flex items-center">
-          <i class="fas fa-rocket mr-2"></i> Setup
+      <!-- Setup Section -->
+      <section class="section">
+        <h2 class="section-title">
+          <i class="fas fa-rocket"></i> Setup
         </h2>
 
-        <div class="mb-8 space-y-6">
-          <div class="bg-gray-50 p-6 rounded-md border-l-4 border-indigo-500">
-            <h3 class="text-lg font-semibold mb-3 flex items-center">
-              <i class="fas fa-database mr-2 text-indigo-500"></i>
-              1. Make a new Supabase project
-            </h3>
-            <p class="text-gray-600">Create a new project in your Supabase dashboard to get started.</p>
-          </div>
+        <!-- Step 1: Setup PostgreSQL -->
+        <div class="step-container">
+          <h3 class="step-title">
+            <i class="fas fa-database"></i>
+            1. Setup PostgreSQL (Ubuntu)
+          </h3>
 
-          <div class="bg-gray-50 p-6 rounded-md border-l-4 border-indigo-500">
-            <h3 class="text-lg font-semibold mb-3 flex items-center">
-              <i class="fas fa-cog mr-2 text-indigo-500"></i>
-              2. Environment
-            </h3>
-            <p class="text-gray-600 mb-3">Create a <code class="bg-gray-200 px-2 py-1 rounded">.env.local</code> file
-              and add the following values:</p>
-            <div class="code-block bg-gray-700 text-gray-100 p-4 rounded-md font-mono text-sm">
-              <div class="code-content">
-                SUPABASE_URL=EXAMPLE
-                SUPABASE_KEY=EXAMPLE
-              </div>
-              <button onclick="copyCode(this)" class="copy-btn tooltip">
-                <i class="far fa-copy"></i>
-                <span class="tooltiptext">Copy to clipboard</span>
-              </button>
+          <p class="instruction">1. Download PostgreSQL to get started.</p>
+          <div class="code-block code-snippet">
+            <div class="code-content">
+              sudo apt update
             </div>
+            <button onclick="copyCode(this)" class="copy-btn tooltip">
+              <i class="far fa-copy"></i>
+              <span class="tooltiptext">Copy to clipboard</span>
+            </button>
           </div>
 
-          <div class="bg-gray-50 p-6 rounded-md border-l-4 border-indigo-500">
-            <h3 class="text-lg font-semibold mb-3 flex items-center">
-              <i class="fas fa-table mr-2 text-indigo-500"></i>
-              3. Create new tables (using supabase SQL editor)
-            </h3>
-
-            <div class="mb-4">
-              <p class="font-medium text-indigo-600 mb-2">Categories:</p>
-              <div class="code-block bg-gray-700 text-gray-100 p-4 rounded-md font-mono text-sm ">
-                <div class="code-content">
-                  create table public."Categories" (
-                  slug text not null,
-                  name text not null,
-                  img text null,
-                  created_at timestamp with time zone not null default now(),
-                  is_featured boolean null default false,
-                  constraint Categories_pkey primary key (slug)
-                  ) TABLESPACE pg_default;
-                </div>
-                <button onclick="copyCode(this)" class="copy-btn tooltip">
-                  <i class="far fa-copy"></i>
-                  <span class="tooltiptext">Copy to clipboard</span>
-                </button>
-              </div>
+          <div class="code-block code-snippet">
+            <div class="code-content">
+              sudo apt install postgresql postgresql-contrib
+              sudo service postgresql start
             </div>
+            <button onclick="copyCode(this)" class="copy-btn tooltip">
+              <i class="far fa-copy"></i>
+              <span class="tooltiptext">Copy to clipboard</span>
+            </button>
+          </div>
 
-            <div class="mb-4">
-              <p class="font-medium text-indigo-600 mb-2">Products:</p>
-              <div class="code-block bg-gray-700 text-gray-100 p-4 rounded-md font-mono text-sm  mb-4">
-                <div class="code-content">
-                  create table public."Products" (
-                  slug text not null,
-                  name text not null,
-                  price real not null,
-                  category text not null,
-                  description text not null,
-                  discount smallint not null default '0'::smallint,
-                  quantity smallint not null default '0'::smallint,
-                  quality real not null,
-                  created_at timestamp with time zone not null default now(),
-                  featured_promotion boolean not null default false,
-                  top_selling boolean not null default false,
-                  images text[] not null default '{}'::text[],
-                  related_products text[] not null default '{}'::text[],
-                  constraint Products_pkey primary key (slug),
-                  constraint Products_category_fkey foreign KEY (category) references "Categories" (slug),
-                  constraint Products_discount_check check ((discount <= 100)), constraint Products_quality_check check
-                    ( ( (quality>= (0)::double precision) and (quality <= (5)::double precision) ) ) ) TABLESPACE
-                      pg_default; </div>
-                      <button onclick="copyCode(this)" class="copy-btn tooltip">
-                        <i class="far fa-copy"></i>
-                        <span class="tooltiptext">Copy to clipboard</span>
-                      </button>
-                </div>
-              </div>
-
-              <div class="mb-4">
-                <p class="font-medium text-indigo-600 mb-2">Config:</p>
-                <div class="code-block bg-gray-700 text-gray-100 p-4 rounded-md font-mono text-sm ">
-                  <div class="code-content">
-                    create table public."Config" (
-                    slug text not null,
-                    "themeStringObj" text null default '{"primary":"blue","secondary":"indigo"}'::text,
-                    tos text null default ''::text,
-                    about_us text null default ''::text,
-                    mission text null default ''::text,
-                    partners_description text null default ''::text,
-                    connect_description text null default ''::text,
-                    constraint Config_pkey primary key (slug)
-                    ) TABLESPACE pg_default;
-                  </div>
-                  <button onclick="copyCode(this)" class="copy-btn tooltip">
-                    <i class="far fa-copy"></i>
-                    <span class="tooltiptext">Copy to clipboard</span>
-                  </button>
-                </div>
-                <p class="font-medium my-1">And create 1 row with the slug of "general", leave other columns to default.
-                </p>
-              </div>
-
-              <div class="mb-4">
-                <p class="font-medium text-indigo-600 mb-2">Sets:</p>
-                <div class="code-block bg-gray-700 text-gray-100 p-4 rounded-md font-mono text-sm ">
-                  <div class="code-content">
-                   create table public."Sets" (
-  slug text not null,
-  name text not null,
-  images text[] not null default '{}'::text[],
-  made_by text not null,
-  components text[] not null default '{}'::text[],
-  description text not null,
-  tags text[] not null default '{}'::text[],
-  created_at timestamp with time zone null default now(),
-  related_products text[] not null default '{}'::text[],
-  price real not null default '0'::real,
-  discount real not null default '0'::real,
-  quantity smallint not null default '0'::smallint,
-  constraint Sets_pkey primary key (slug),
-  constraint Sets_quantity_check check ((quantity >= '-1'::integer))
-) TABLESPACE pg_default;
-                  </div>
-                  <button onclick="copyCode(this)" class="copy-btn tooltip">
-                    <i class="far fa-copy"></i>
-                    <span class="tooltiptext">Copy to clipboard</span>
-                  </button>
-                </div>
-              </div>
-
-              <div class="mb-4">
-                <p class="font-medium text-indigo-600 mb-2">Team:</p>
-                <div class="code-block bg-gray-700 text-gray-100 p-4 rounded-md font-mono text-sm ">
-                  <div class="code-content">
-                    create table public."Team" (
-                    slug text not null,
-                    name text not null,
-                    role text null,
-                    img text null,
-                    constraint Team_pkey primary key (slug)
-                    ) TABLESPACE pg_default;
-                  </div>
-                  <button onclick="copyCode(this)" class="copy-btn tooltip">
-                    <i class="far fa-copy"></i>
-                    <span class="tooltiptext">Copy to clipboard</span>
-                  </button>
-                </div>
-              </div>
-
-              <div class="mb-4">
-                <p class="font-medium text-indigo-600 mb-2">Partners:</p>
-                <div class="code-block bg-gray-700 text-gray-100 p-4 rounded-md font-mono text-sm ">
-                  <div class="code-content">
-                    create table public."Partners" (
-                    slug text not null,
-                    img text not null,
-                    constraint Partners_pkey primary key (slug)
-                    ) TABLESPACE pg_default;
-                  </div>
-                  <button onclick="copyCode(this)" class="copy-btn tooltip">
-                    <i class="far fa-copy"></i>
-                    <span class="tooltiptext">Copy to clipboard</span>
-                  </button>
-                </div>
-              </div>
-
-              <div class="mb-4">
-                <p class="font-medium text-indigo-600 mb-2">Themes:</p>
-                <div class="code-block bg-gray-700 text-gray-100 p-4 rounded-md font-mono text-sm ">
-                  <div class="code-content">
-                    create table public."Themes" (
-                    slug text not null default 'general'::text,
-                    "themeStringObj" text not null default '{"primary":"blue","secondary":"violet"}'::text,
-                    img text null default ''::text,
-                    constraint Themes_pkey primary key (slug)
-                    ) TABLESPACE pg_default;
-                  </div>
-                  <button onclick="copyCode(this)" class="copy-btn tooltip">
-                    <i class="far fa-copy"></i>
-                    <span class="tooltiptext">Copy to clipboard</span>
-                  </button>
-                </div>
-              </div>
-
-              <div class="mb-4">
-                <p class="font-medium text-indigo-600 mb-2">Orders:</p>
-                <div class="code-block bg-gray-700 text-gray-100 p-4 rounded-md font-mono text-sm ">
-                  <div class="code-content">
-                    create table public."Orders" (
-                    slug text not null,
-                    created_at timestamp with time zone null default now(),
-                    name text not null,
-                    email text not null,
-                    address text not null,
-                    city text not null,
-                    postal_code text null,
-                    notes text null,
-                    payment_method text not null,
-                    ordered_products text not null,
-                    shipping_fee real not null,
-                    sub_total real not null,
-                    phone integer not null,
-                    constraint Orders_pkey primary key (slug)
-                    ) TABLESPACE pg_default;
-                  </div>
-                  <button onclick="copyCode(this)" class="copy-btn tooltip">
-                    <i class="far fa-copy"></i>
-                    <span class="tooltiptext">Copy to clipboard</span>
-                  </button>
-                </div>
-              </div>
-
+          <p class="instruction">2. Open the psql shell.</p>
+          <div class="code-block code-snippet">
+            <div class="code-content">
+              sudo -u postgres psql
             </div>
+            <button onclick="copyCode(this)" class="copy-btn tooltip">
+              <i class="far fa-copy"></i>
+              <span class="tooltiptext">Copy to clipboard</span>
+            </button>
           </div>
 
-          <div class="mb-8 bg-gray-50 p-6 rounded-md border-l-4 border-indigo-500">
-            <h3 class="text-lg font-semibold mb-3 flex items-center">
-              <i class="fas fa-folder mr-2 text-indigo-500"></i>
-              4. Create new storage buckets
-            </h3>
-            <p class="text-gray-600 mb-3">Create these storage buckets (all public):</p>
-            <ul class="list-disc list-inside text-gray-700 space-y-1">
-              <li>categories-images</li>
-              <li>products-images</li>
-              <li>sets-images</li>
-              <li>team-images</li>
-              <li>partners-images</li>
-              <li>themes-images</li>
-            </ul>
+          <p class="instruction">3. Create your database.</p>
+          <div class="code-block code-snippet">
+            <div class="code-content">
+              CREATE DATABASE 'your_database_name';
+            </div>
+            <button onclick="copyCode(this)" class="copy-btn tooltip">
+              <i class="far fa-copy"></i>
+              <span class="tooltiptext">Copy to clipboard</span>
+            </button>
           </div>
 
-          <div class="mb-8 bg-gray-50 p-6 rounded-md border-l-4 border-indigo-500">
-            <h3 class="text-lg font-semibold mb-3 flex items-center">
-              <i class="fas fa-user-shield mr-2 text-indigo-500"></i>
-              5. Create Admin account
-            </h3>
-            <p class="text-gray-600">Go to Supabase authentication and create a new account manually (email & pass).
-              Turn off the option "Allow new users to sign up", and you can get the uuid from the users table.</p>
+          <p class="instruction">4. Create admin account.</p>
+          <div class="code-block code-snippet">
+            <div class="code-content">
+              CREATE USER 'your_username' WITH ENCRYPTED PASSWORD 'your_password';
+            </div>
+            <button onclick="copyCode(this)" class="copy-btn tooltip">
+              <i class="far fa-copy"></i>
+              <span class="tooltiptext">Copy to clipboard</span>
+            </button>
           </div>
 
-          <div class="mb-8 bg-gray-50 p-6 rounded-md border-l-4 border-indigo-500">
-            <h3 class="text-lg font-semibold mb-3 flex items-center">
-              <i class="fas fa-shield-alt mr-2 text-indigo-500"></i>
-              6. SQL Policies (using supabase SQL editor)
-            </h3>
-            <p class="mb-8 text-gray-600">Go to <code
-                class="bg-gray-200 px-2 py-1 rounded">./setup-files/create-sql-polices.js</code> and write the table
-              name and admin uuid (you must do it for each table), using <code
-                class="bg-gray-200 px-2 py-1 rounded">node create-sql-polices.js</code> it will generate an SQL Policies
-              code file for the Table or Bucket, (you'll need to paste the results of that file in Supabase SQL editor).
-            </p>
+          <p class="instruction">5. Give the account admin privileges.</p>
+          <div class="code-block code-snippet">
+            <div class="code-content">
+              GRANT ALL PRIVILEGES ON DATABASE 'your_database_name' TO 'your_username';
+            </div>
+            <button onclick="copyCode(this)" class="copy-btn tooltip">
+              <i class="far fa-copy"></i>
+              <span class="tooltiptext">Copy to clipboard</span>
+            </button>
           </div>
 
-          <div class="mb-8 bg-gray-50 p-6 rounded-md border-l-4 border-indigo-500">
-            <h3 class="text-lg font-semibold mb-3 flex items-center">
-              <i class="fas fa-cogs mr-2 text-indigo-500"></i>
-              7. Constants
-            </h3>
-            <p class="text-gray-600">Go to <code class="bg-gray-200 px-2 py-1 rounded">./src/helpers/config.js</code>
-              and edit whatever constant you need there.</p>
+          <div class="code-block code-snippet">
+            <div class="code-content">
+              ALTER USER 'your_username' CREATEDB;
+            </div>
+            <button onclick="copyCode(this)" class="copy-btn tooltip">
+              <i class="far fa-copy"></i>
+              <span class="tooltiptext">Copy to clipboard</span>
+            </button>
           </div>
 
-          <div class="mb-8 bg-gray-50 p-6 rounded-md border-l-4 border-indigo-500">
-            <h3 class="text-lg font-semibold mb-3 flex items-center">
-              <i class="fa fa-language mr-2 text-indigo-500"></i>
-              8. Language
-            </h3>
-            <p class="text-gray-600">Go to <code class="bg-gray-200 px-2 py-1 rounded">./src/helpers/language.js</code>
-              and edit any string you want in the website (e.g change "Sets" to "Builds" or re-write everything in
-              another language), and you can also change the direction of the website if you want to use Arabic or
-              Hebrew language.</p>
-          </div>
+          <p class="instruction">After these commands, type <code class="inline-code">\q</code> or <code
+              class="inline-code">exit</code> to leave the psql prompt.</p>
 
-          <div class="mb-8 bg-gray-50 p-6 rounded-md border-l-4 border-indigo-500">
-            <h3 class="text-lg font-semibold mb-3 flex items-center">
-              <i class="fas fa-image mr-2 text-indigo-500"></i>
-              9. Logo and banner
-            </h3>
-            <p class="text-gray-600">Go to <code class="bg-gray-200 px-2 py-1 rounded">./public/</code> and change the
-              icon.png</p>
-            <p class="text-gray-600">Go to <code class="bg-gray-200 px-2 py-1 rounded">./src/app/assets</code> and
-              change the header-bg.png (optional)</p>
+          <p class="instruction">6. Connect to your_database_name as the postgres superuser. It's a good way to verify
+            the database exists.</p>
+          <div class="code-block code-snippet">
+            <div class="code-content">
+              sudo -u postgres psql -d 'your_database_name'
+            </div>
+            <button onclick="copyCode(this)" class="copy-btn tooltip">
+              <i class="far fa-copy"></i>
+              <span class="tooltiptext">Copy to clipboard</span>
+            </button>
           </div>
+        </div>
 
-          <div class="bg-gray-50 p-6 rounded-md border-l-4 border-indigo-500">
-            <h3 class="text-lg font-semibold mb-3 flex items-center">
-              <i class="fas fa-boxes-stacked mr-2 text-indigo-500"></i>
-              10. Manage tables
-            </h3>
-            <p class="text-gray-600">Go to <code class="bg-gray-200 px-2 py-1 rounded">/admin</code> and log in with
-              your admin account.</p>
-            <p class="text-gray-600">You will be navigated to <code
-                class="bg-gray-200 px-2 py-1 rounded">/admin/panel</code> where you can easily manage categories,
-              products, sets, team, partners, general info and themes.</p>
+        <!-- Step 2: Environment -->
+        <div class="step-container">
+          <h3 class="step-title">
+            <i class="fas fa-cog"></i>
+            2. Environment
+          </h3>
+          <p class="instruction">Create a <code class="inline-code">.env.local</code> file then add & fill the following
+            values:</p>
+          <div class="code-block code-snippet">
+            <div class="code-content">
+              # Genreal<br />
+              NODE_ENV='development'<br />
+              APP_BASE_URL="http://localhost:3000"<br />
+              <br />
+              # Auth<br />
+              JWT_SECRET="your-very-strong-jwt-secret-key-here-at-least-32-characters"<br />
+              <br />
+              # Database<br />
+              JWT_SECRET="postgresql://username:password@localhost:5432/your_database_name"<br />
+              <br />
+              # Email<br />
+              SERVICE=gmail<br />
+              EMAIL_MAIL=example@gmail.com<br />
+              EMAIL_PASS=fdoa kgsa bmrw asnt<br />
+              <br />
+              # Checkout<br />
+              CHECKOUT_LIMIT=3 # per reset time<br />
+              CHECKOUT_LIMIT_RESET_TIME=3600000 # 1 hour<br />
+            </div>
+            <button onclick="copyCode(this)" class="copy-btn tooltip">
+              <i class="far fa-copy"></i>
+              <span class="tooltiptext">Copy to clipboard</span>
+            </button>
           </div>
+        </div>
+
+        <!-- Step 3: Connect to Database -->
+        <div class="step-container">
+          <h3 class="step-title">
+            <i class="fas fa-table"></i>
+            3. Connect the app to the database and initialize the schemas
+          </h3>
+          <div class="code-block code-snippet">
+            <div class="code-content">
+              npm run prisma:init<br />
+              npm run prisma:migrate:dev<br />
+              npm run prisma:generate<br />
+              npm run prisma:push<br />
+            </div>
+            <button onclick="copyCode(this)" class="copy-btn tooltip">
+              <i class="far fa-copy"></i>
+              <span class="tooltiptext">Copy to clipboard</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Step 4: Create Admin Account -->
+        <div class="step-container">
+          <h3 class="step-title">
+            <i class="fas fa-user-shield"></i>
+            4. Create Admin account
+          </h3>
+          <p class="instruction">Open the website with <code class="inline-code">npm run dev</code></p>
+          <p class="instruction">Go to <code class="inline-code">/account</code> and create a new account manually
+            (name, email, pass).</p>
+          <p class="instruction">Open the prisma studio with <code class="inline-code">npm run prisma:studio</code></p>
+          <p class="instruction">Go to the <code class="inline-code">Users</code> table</p>
+          <p class="instruction">Manually change <code class="inline-code">isAdmin</code> to true</p>
+        </div>
+
+        <!-- Step 5: Constants -->
+        <div class="step-container">
+          <h3 class="step-title">
+            <i class="fas fa-cogs"></i>
+            5. Constants
+          </h3>
+          <p class="instruction">Go to <code class="inline-code">./src/helpers/config.js</code> and edit whatever
+            constant you need there.</p>
+        </div>
+
+        <!-- Step 6: Language -->
+        <div class="step-container">
+          <h3 class="step-title">
+            <i class="fa fa-language"></i>
+            6. Language
+          </h3>
+          <p class="instruction">Go to <code class="inline-code">./src/helpers/language.js</code> and edit any string
+            you want in the website (e.g change "Sets" to "Builds" or re-write everything in another language), and you
+            can also change the direction of the website if you want to use Arabic or Hebrew language.</p>
+        </div>
+
+        <!-- Step 7: Logo and Banner -->
+        <div class="step-container">
+          <h3 class="step-title">
+            <i class="fas fa-image"></i>
+            7. Logo and banner
+          </h3>
+          <p class="instruction">Go to <code class="inline-code">./public/</code> and change the <code
+              class="inline-code">icon.png</code></p>
+          <p class="instruction">Go to <code class="inline-code">./src/app/assets</code> and change the default
+            header-bg.png (optional), (you can change it in admin panel now)</p>
+        </div>
+
+        <!-- Step 8: Manage Tables -->
+        <div class="step-container">
+          <h3 class="step-title">
+            <i class="fas fa-boxes-stacked"></i>
+            8. Manage tables
+          </h3>
+          <p class="instruction">Go to <code class="inline-code">/account</code> and log in with your admin
+            account (admin account from step 4, not 1).</p>
+          <p class="instruction">You will find in account dropdown a button to navigate to <code
+              class="inline-code">/admin</code> where you can easily manage categories, products, sets, team, partners,
+            general info and themes.</p>
+        </div>
       </section>
 
+      <!-- Gallery Section -->
+      <section class="section">
+        <h2 class="section-title">
+          <i class="fas fa-images"></i> Project Gallery
+        </h2>
+        <div class="bg-gray-50 p-6 rounded-md">
+          <p class="instruction mb-4">Screenshots from different StoreFlow implementations:</p>
+
+          <!-- Gallery Grid -->
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <!-- Gallery Item 1 -->
+            <div class="gallery-item">
+              <div class="relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                <img src="public/gallery/1.png" alt="Dashboard View"
+                  class="w-full object-cover hover:scale-105 transition-transform duration-300" />
+                <div
+                  class="pointer-events-none absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+                  <h4 class="text-white font-medium">Home</h4>
+                  <p class="text-gray-200 text-sm">Headers and featured products</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Gallery Item 2 -->
+            <div class="gallery-item">
+              <div class="relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                <img src="public/gallery/2.png" alt="Products Page"
+                  class="w-full object-cover hover:scale-105 transition-transform duration-300" />
+                <div
+                  class="pointer-events-none absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+                  <h4 class="text-white font-medium">Home</h4>
+                  <p class="text-gray-200 text-sm">Featured product</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Gallery Item 3 -->
+            <div class="gallery-item">
+              <div class="relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                <img src="public/gallery/3.png" alt="Checkout Process"
+                  class="w-full object-cover hover:scale-105 transition-transform duration-300" />
+                <div
+                  class="pointer-events-none absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+                  <h4 class="text-white font-medium">Home</h4>
+                  <p class="text-gray-200 text-sm">Explore categories and best sellers</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Gallery Item 4 -->
+            <div class="gallery-item">
+              <div class="relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                <img src="public/gallery/4.png" alt="Mobile View"
+                  class="w-full object-cover hover:scale-105 transition-transform duration-300" />
+                <div
+                  class="pointer-events-none absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+                  <h4 class="text-white font-medium">Home</h4>
+                  <p class="text-gray-200 text-sm">Featured Categories</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Gallery Item 5 -->
+            <div class="gallery-item">
+              <div class="relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                <img src="public/gallery/5.png" alt="User Profile"
+                  class="w-full object-cover hover:scale-105 transition-transform duration-300" />
+                <div
+                  class="pointer-events-none absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+                  <h4 class="text-white font-medium">Home</h4>
+                  <p class="text-gray-200 text-sm">Account management interface</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Gallery Item 6 -->
+            <div class="gallery-item">
+              <div class="relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                <img src="public/gallery/6.png"
+                  class="w-full object-cover hover:scale-105 transition-transform duration-300" />
+                <div
+                  class="pointer-events-none absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+                  <h4 class="text-white font-medium">Store</h4>
+                  <p class="text-gray-200 text-sm">Upper side</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Gallery Item 7 -->
+            <div class="gallery-item">
+              <div class="relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                <img src="public/gallery/7.png"
+                  class="w-full object-cover hover:scale-105 transition-transform duration-300" />
+                <div
+                  class="pointer-events-none absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+                  <h4 class="text-white font-medium">Store</h4>
+                  <p class="text-gray-200 text-sm">Bottom side</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Gallery Item 8 -->
+            <div class="gallery-item">
+              <div class="relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                <img src="public/gallery/8.png"
+                  class="w-full object-cover hover:scale-105 transition-transform duration-300" />
+                <div
+                  class="pointer-events-none absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+                  <h4 class="text-white font-medium">Product</h4>
+                  <p class="text-gray-200 text-sm">Upper side</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Gallery Item 9 -->
+            <div class="gallery-item">
+              <div class="relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                <img src="public/gallery/9.png"
+                  class="w-full object-cover hover:scale-105 transition-transform duration-300" />
+                <div
+                  class="pointer-events-none absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+                  <h4 class="text-white font-medium">Product</h4>
+                  <p class="text-gray-200 text-sm">Bottom side</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Gallery Item 10 -->
+            <div class="gallery-item">
+              <div class="relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                <img src="public/gallery/10.png"
+                  class="w-full object-cover hover:scale-105 transition-transform duration-300" />
+                <div
+                  class="pointer-events-none absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+                  <h4 class="text-white font-medium">Product</h4>
+                  <p class="text-gray-200 text-sm">Related products</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Gallery Item 11 -->
+            <div class="gallery-item">
+              <div class="relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                <img src="public/gallery/11.png"
+                  class="w-full object-cover hover:scale-105 transition-transform duration-300" />
+                <div
+                  class="pointer-events-none absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+                  <h4 class="text-white font-medium">Sets</h4>
+                  <p class="text-gray-200 text-sm">Main screen</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Gallery Item 12 -->
+            <div class="gallery-item">
+              <div class="relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                <img src="public/gallery/12.png"
+                  class="w-full object-cover hover:scale-105 transition-transform duration-300" />
+                <div
+                  class="pointer-events-none absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+                  <h4 class="text-white font-medium">Set</h4>
+                  <p class="text-gray-200 text-sm">Upper side</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Gallery Item 13 -->
+            <div class="gallery-item">
+              <div class="relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                <img src="public/gallery/13.png"
+                  class="w-full object-cover hover:scale-105 transition-transform duration-300" />
+                <div
+                  class="pointer-events-none absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+                  <h4 class="text-white font-medium">Set</h4>
+                  <p class="text-gray-200 text-sm">Bottom side</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Gallery Item 14 -->
+            <div class="gallery-item">
+              <div class="relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                <img src="public/gallery/14.png"
+                  class="w-full object-cover hover:scale-105 transition-transform duration-300" />
+                <div
+                  class="pointer-events-none absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+                  <h4 class="text-white font-medium">Set</h4>
+                  <p class="text-gray-200 text-sm">Related sets</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Gallery Item 15 -->
+            <div class="gallery-item">
+              <div class="relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                <img src="public/gallery/15.png"
+                  class="w-full object-cover hover:scale-105 transition-transform duration-300" />
+                <div
+                  class="pointer-events-none absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+                  <h4 class="text-white font-medium">Account</h4>
+                  <p class="text-gray-200 text-sm">Account overview</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Gallery Item 16 -->
+            <div class="gallery-item">
+              <div class="relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                <img src="public/gallery/16.png"
+                  class="w-full object-cover hover:scale-105 transition-transform duration-300" />
+                <div
+                  class="pointer-events-none absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+                  <h4 class="text-white font-medium">Account</h4>
+                  <p class="text-gray-200 text-sm">My orders and print</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Gallery Item 17 -->
+            <div class="gallery-item">
+              <div class="relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                <img src="public/gallery/17.png"
+                  class="w-full object-cover hover:scale-105 transition-transform duration-300" />
+                <div
+                  class="pointer-events-none absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+                  <h4 class="text-white font-medium">Account</h4>
+                  <p class="text-gray-200 text-sm">My wishlist</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Gallery Item 18 -->
+            <div class="gallery-item">
+              <div class="relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                <img src="public/gallery/18.png"
+                  class="w-full object-cover hover:scale-105 transition-transform duration-300" />
+                <div
+                  class="pointer-events-none absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+                  <h4 class="text-white font-medium">About us</h4>
+                </div>
+              </div>
+            </div>
+
+            <!-- Gallery Item 19 -->
+            <div class="gallery-item">
+              <div class="relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                <img src="public/gallery/19.png"
+                  class="w-full object-cover hover:scale-105 transition-transform duration-300" />
+                <div
+                  class="pointer-events-none absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+                  <h4 class="text-white font-medium">Contact us</h4>
+                  <p class="text-gray-200 text-sm">Contact and Partners</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Gallery Item 20 -->
+            <div class="gallery-item">
+              <div class="relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                <img src="public/gallery/20.png"
+                  class="w-full object-cover hover:scale-105 transition-transform duration-300" />
+                <div
+                  class="pointer-events-none absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+                  <h4 class="text-white font-medium">Terms of service</h4>
+                </div>
+              </div>
+            </div>
+
+            <!-- Gallery Item 21 -->
+            <div class="gallery-item">
+              <div class="relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                <img src="public/gallery/21.png"
+                  class="w-full object-cover hover:scale-105 transition-transform duration-300" />
+                <div
+                  class="pointer-events-none absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+                  <h4 class="text-white font-medium">Headers</h4>
+                  <p class="text-gray-200 text-sm">Search for products</p>
+
+                </div>
+              </div>
+            </div>
+
+            <!-- Gallery Item 22 -->
+            <div class="gallery-item">
+              <div class="relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                <img src="public/gallery/22.png"
+                  class="w-full object-cover hover:scale-105 transition-transform duration-300" />
+                <div
+                  class="pointer-events-none absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+                  <h4 class="text-white font-medium">Headers</h4>
+                  <p class="text-gray-200 text-sm">Account dropdown</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Gallery Item 23 -->
+            <div class="gallery-item">
+              <div class="relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                <img src="public/gallery/23.png"
+                  class="w-full object-cover hover:scale-105 transition-transform duration-300" />
+                <div
+                  class="pointer-events-none absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+                  <h4 class="text-white font-medium">Cart</h4>
+                  <p class="text-gray-200 text-sm">Sidebar</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Gallery Item 24 -->
+            <div class="gallery-item">
+              <div class="relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                <img src="public/gallery/24.png"
+                  class="w-full object-cover hover:scale-105 transition-transform duration-300" />
+                <div
+                  class="pointer-events-none absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+                  <h4 class="text-white font-medium">Checkout</h4>
+                  <p class="text-gray-200 text-sm">Delivery form</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Gallery Item 25 -->
+            <div class="gallery-item">
+              <div class="relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                <img src="public/gallery/25.png"
+                  class="w-full object-cover hover:scale-105 transition-transform duration-300" />
+                <div
+                  class="pointer-events-none absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+                  <h4 class="text-white font-medium">Checkout</h4>
+                  <p class="text-gray-200 text-sm">Confirm (or print confirmation page)</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Gallery Item 26 -->
+            <div class="gallery-item">
+              <div class="relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                <img src="public/gallery/26.png"
+                  class="w-full object-cover hover:scale-105 transition-transform duration-300" />
+                <div
+                  class="pointer-events-none absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+                  <h4 class="text-white font-medium">Admin</h4>
+                  <p class="text-gray-200 text-sm">Edit product</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Gallery Item 27 -->
+            <div class="gallery-item">
+              <div class="relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                <img src="public/gallery/27.png"
+                  class="w-full object-cover hover:scale-105 transition-transform duration-300" />
+                <div
+                  class="pointer-events-none absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+                  <h4 class="text-white font-medium">Admin</h4>
+                  <p class="text-gray-200 text-sm">Discount calculator</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Gallery Item 28 -->
+            <div class="gallery-item">
+              <div class="relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                <img src="public/gallery/28.png"
+                  class="w-full object-cover hover:scale-105 transition-transform duration-300" />
+                <div
+                  class="pointer-events-none absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+                  <h4 class="text-white font-medium">Admin</h4>
+                  <p class="text-gray-200 text-sm">Change theme</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Gallery Item 29 -->
+            <div class="gallery-item">
+              <div class="relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                <img src="public/gallery/29.png"
+                  class="w-full object-cover hover:scale-105 transition-transform duration-300" />
+                <div
+                  class="pointer-events-none absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+                  <h4 class="text-white font-medium">Admin</h4>
+                  <p class="text-gray-200 text-sm">General info</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Gallery Item 30 -->
+            <div class="gallery-item">
+              <div class="relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                <img src="public/gallery/30.png"
+                  class="w-full object-cover hover:scale-105 transition-transform duration-300" />
+                <div
+                  class="pointer-events-none absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+                  <h4 class="text-white font-medium">Admin</h4>
+                  <p class="text-gray-200 text-sm">Products table</p>
+                </div>
+              </div>
+            </div>
+          </div> <!-- End Gallery Grid -->
+
+          <!-- Gallery Controls -->
+          <div class="flex justify-center mt-6 space-x-2">
+            <button disabled
+              class="disabled:cursor-not-allowed disabled:bg-gray-500 px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition duration-200">
+              <i class="fas fa-th-large mr-2"></i>View All Screenshots
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Source Code Section -->
       <div class="bg-indigo-50 p-6 rounded-md border border-indigo-200 mt-8">
         <h3 class="text-lg font-semibold mb-2 text-indigo-700">Get Source Code</h3>
         <p class="text-gray-700">Visit my GitHub repository for full source code and detailed documentation:</p>
@@ -438,29 +903,31 @@
       </div>
     </div>
 
+    <!-- GitHub Link -->
     <a href="https://github.com/aymanbazyan/StoreFlow-Project-Setup-Documentation/tree/main" target="_blank"
       class="mt-3 inline-flex items-center px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition duration-200">
       <i class="fab fa-github mr-2"></i>
       GitHub Repository
     </a>
 
+    <!-- Footer -->
     <footer class="text-center text-gray-500 text-sm mt-8 pb-8">
       <p>StoreFlow Project Setup Documentation © 2025</p>
     </footer>
   </main>
 
+  <!-- Back to Top Button -->
   <div class="fixed bottom-4 right-4">
     <a href="#" class="bg-indigo-600 text-white p-3 rounded-full shadow-lg hover:bg-indigo-700 transition duration-200">
       <i class="fas fa-arrow-up"></i>
     </a>
   </div>
 
+  <!-- Scripts -->
   <script>
     function copyCode(button) {
       const codeBlock = button.closest('.code-block');
       const codeContent = codeBlock.querySelector('.code-content');
-
-      // Get only the text content from the code-content element
       const code = codeContent.textContent.trim();
 
       navigator.clipboard.writeText(code)
@@ -475,6 +942,118 @@
           console.error('Could not copy text: ', err);
         });
     }
+
+    // Gallery and Lightbox functionality
+    document.addEventListener('DOMContentLoaded', function () {
+      // Create lightbox elements
+      const lightbox = document.createElement('div');
+      lightbox.className = 'lightbox';
+      lightbox.innerHTML = `
+        <div class="lightbox-controls">
+          <button class="lightbox-close"><i class="fas fa-times"></i></button>
+        </div>
+        <button class="lightbox-prev"><i class="fas fa-chevron-left"></i></button>
+        <img class="lightbox-content" src="" alt="Gallery Image">
+        <button class="lightbox-next"><i class="fas fa-chevron-right"></i></button>
+        <div class="lightbox-caption"></div>
+      `;
+      document.body.appendChild(lightbox);
+
+      // Get all gallery items
+      const galleryItems = document.querySelectorAll('.gallery-item img');
+      let currentIndex = 0;
+
+      // Add click event to gallery items
+      galleryItems.forEach((item, index) => {
+        item.addEventListener('click', function () {
+          lightbox.classList.add('active');
+          document.body.style.overflow = 'hidden'; // Prevent scrolling when lightbox is open
+          const lightboxImg = lightbox.querySelector('.lightbox-content');
+          lightboxImg.src = this.src;
+
+          const caption = this.closest('.gallery-item').querySelector('h4').textContent;
+          const description = this.closest('.gallery-item').querySelector('p').textContent;
+          lightbox.querySelector('.lightbox-caption').innerHTML = `<h3>${caption}</h3><p>${description}</p>`;
+
+          currentIndex = index;
+          updateNavButtons();
+        });
+      });
+
+      // Close lightbox
+      lightbox.querySelector('.lightbox-close').addEventListener('click', function () {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = ''; // Re-enable scrolling
+      });
+
+      // Previous image
+      lightbox.querySelector('.lightbox-prev').addEventListener('click', function () {
+        if (currentIndex > 0) {
+          currentIndex--;
+          updateLightboxContent();
+        }
+      });
+
+      // Next image
+      lightbox.querySelector('.lightbox-next').addEventListener('click', function () {
+        if (currentIndex < galleryItems.length - 1) {
+          currentIndex++;
+          updateLightboxContent();
+        }
+      });
+
+      // Update lightbox content based on current index
+      function updateLightboxContent() {
+        const item = galleryItems[currentIndex];
+        const lightboxImg = lightbox.querySelector('.lightbox-content');
+        lightboxImg.src = item.src;
+
+        const caption = item.closest('.gallery-item').querySelector('h4').textContent;
+        const description = item.closest('.gallery-item').querySelector('p').textContent;
+        lightbox.querySelector('.lightbox-caption').innerHTML = `<h3>${caption}</h3><p>${description}</p>`;
+
+        updateNavButtons();
+      }
+
+      // Update navigation button states
+      function updateNavButtons() {
+        lightbox.querySelector('.lightbox-prev').style.visibility = currentIndex > 0 ? 'visible' : 'hidden';
+        lightbox.querySelector('.lightbox-next').style.visibility = currentIndex < galleryItems.length - 1 ? 'visible' : 'hidden';
+      }
+
+      // Close lightbox when clicking outside the image
+      lightbox.addEventListener('click', function (event) {
+        if (event.target === lightbox) {
+          lightbox.classList.remove('active');
+          document.body.style.overflow = ''; // Re-enable scrolling
+        }
+      });
+
+      // Keyboard navigation
+      document.addEventListener('keydown', function (event) {
+        if (!lightbox.classList.contains('active')) return;
+
+        if (event.key === 'Escape') {
+          lightbox.classList.remove('active');
+          document.body.style.overflow = ''; // Re-enable scrolling
+        } else if (event.key === 'ArrowLeft' && currentIndex > 0) {
+          currentIndex--;
+          updateLightboxContent();
+        } else if (event.key === 'ArrowRight' && currentIndex < galleryItems.length - 1) {
+          currentIndex++;
+          updateLightboxContent();
+        }
+      });
+
+      // Handle the "View All Screenshots" button
+      const viewAllButton = document.querySelector('.gallery-controls button');
+      if (viewAllButton) {
+        viewAllButton.addEventListener('click', function () {
+          // Just open the first image in the lightbox
+          galleryItems[0].click();
+        });
+      }
+    });
   </script>
 </body>
 
